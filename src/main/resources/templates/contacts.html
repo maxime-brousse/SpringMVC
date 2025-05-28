@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Liste des contacts</title>
@@ -7,6 +7,13 @@
 </head>
 <body class="bg-light">
 <div class="container mt-5">
+
+    <div class="container mt-5">
+        <p th:inline="text">Connecter en tant que :<span th:remove="tag" sec:authentication="name"></span></p>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Sign Out" class="btn btn-primary mb-2"/>
+        </form>
+    </div>
     <h1 class="mb-4">Liste des contacts</h1>
 
     <a class="btn btn-primary mb-3" th:href="@{/contacts/new}">Ajouter un contact</a>
