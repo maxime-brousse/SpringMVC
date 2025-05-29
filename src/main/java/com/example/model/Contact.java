@@ -1,8 +1,10 @@
 package com.example.model;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import jakarta.persistence.*;
 
 @Entity
+@JacksonXmlRootElement(localName = "contact")
 public class Contact {
 
     @Id

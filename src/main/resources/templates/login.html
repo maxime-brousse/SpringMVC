@@ -5,22 +5,24 @@
     <title>Login</title>
 </head>
 <body>
-<div th:if="${param.error}" class ="fw-bold text-danger">
-    Identifiant invalide
-</div>
-<div th:if="${param.logout}" class="fw-bold text-danger">
-    Vous êtes déconnecter
-</div>
-<form th:action="@{/login}" method="post">
-    <div class="mb-3">
-        <label for="username" class="form-label">Identifiant :</label>
-        <input type="text" id="username" name="username" class="form-control" required/>
+<div class="container mt-5">
+    <div th:if="${param.error}" class ="fw-bold text-danger">
+        Identifiant invalide
     </div>
-    <div class="mb-3">
-        <label for="password" class="form-label">Mot de passe :</label>
-        <input type="password" id="password" name="password" class="form-control" required/>
+    <div th:if="${param.logout}" class="fw-bold text-danger">
+        Vous êtes déconnecter
     </div>
-    <input type="submit" value="Sign In" class="btn btn-success"/>
-</form>
+    <form th:action="@{/login}" method="post">
+        <div class="mb-3">
+            <label for="username" class="form-label">Identifiant :</label>
+            <input type="text" id="username" name="username" class="form-control" required/>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Mot de passe :</label>
+            <input type="password" id="password" name="password" class="form-control" required/>
+        </div>
+        <input type="submit" value="se connecter" class="btn btn-success"/>
+    </form>
+</div>
 </body>
 </html>
