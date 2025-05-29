@@ -30,4 +30,35 @@ public class ContactRestController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+
+    // POST (Créer)
+    @PostMapping(consumes = "application/xml")
+    public ResponseEntity<Contact> createContact(@RequestBody Contact contact) {
+        Contact saved = repository.save(contact);
+        return ResponseEntity.ok(saved);
+    }
+
+    // PUT (Modifier)
+    @PutMapping(value = "/{id}", consumes = "application/xml")
+    public ResponseEntity<Contact> updateContact(@PathVariable Long id, @RequestBody Contact updated) {
+        return repository.findById(id)
+                .map(existing -> {
+                    existing.setNom(updated.getNom());
+                    existing.setPrenom(updated.getPrenom());
+                    existing.setNumero(updated.getNumero());
+                    repository.save(existing);
+                    return ResponseEntity.ok(existing);
+                })
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    // DELETE
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteContact(@PathVariable Long id) {
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
 }
